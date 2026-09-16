@@ -2,16 +2,16 @@
 # See GitHub docs: https://docs.github.com/en/repositories/managing-your-repository/defining-the-merge-readiness-of-code-changes
 
 # Security-critical paths require security team review
-/.sops.yaml @journeyoflife-org/security-team
-/scripts/sops-validate.py @journeyoflife-org/security-team
-/secrets/ @journeyoflife-org/security-team
+/.sops.yaml @journeyoflife-org/security
+/scripts/sops-validate.py @journeyoflife-org/security
+/secrets/ @journeyoflife-org/security
 
-# Governance documents require architect review
-/LICENSE @journeyoflife-org/architects
-/SECURITY.md @journeyoflife-org/security-team
-/CONTRIBUTING.md @journeyoflife-org/architects
-/CHANGELOG.md @journeyoflife-org/architects
+# Governance documents require security team review
+/LICENSE @journeyoflife-org/security
+/SECURITY.md @journeyoflife-org/security
+/CONTRIBUTING.md @journeyoflife-org/security
+/CHANGELOG.md @journeyoflife-org/security
 
-# Package dependencies require security + architect review
-/package.json @journeyoflife-org/security-team @journeyoflife-org/architects
-/pnpm-lock.yaml @journeyoflife-org/security-team
+# Package dependencies require security team review
+/package.json @journeyoflife-org/security
+/pnpm-lock.yaml @journeyoflife-org/security
