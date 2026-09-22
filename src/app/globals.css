@@ -4,20 +4,20 @@
 
 /*
  * Global styles for the JOL vertical site.
- * Design tokens are consumed from @jol-hub/ui — do not redefine here.
+ *
+ * Design tokens are imported from `@journeyoflife-org/ui/styles/tokens.css` in
+ * the root layout — do not redefine them here. The previous local `:root` block
+ * hardcoded a conflicting palette (`--jol-color-primary: #1a1a2e` against the
+ * platform's `#1e3a5f`) which nothing consumed, while the `bg-primary`
+ * utilities the pages actually used resolved to nothing at all.
  */
 
-:root {
-  /* Fallback tokens — override via @jol-hub/ui/tokens in production */
-  --jol-color-primary: #1a1a2e;
-  --jol-color-accent: #c9a227;
-  --jol-color-surface: #ffffff;
-  --jol-color-text: #1a1a1a;
-  --jol-color-muted: #6b7280;
-}
-
-/* Skip navigation focus state */
-a:focus {
-  outline: 2px solid var(--jol-color-accent);
+/*
+ * Visible focus indicator (WCAG 2.4.7), using the platform focus token.
+ * Scoped to `:focus-visible` so pointer clicks do not leave a ring, whereas the
+ * previous bare `a:focus` rule applied to every anchor on any focus event.
+ */
+:focus-visible {
+  outline: 2px solid var(--jol-focus);
   outline-offset: 2px;
 }

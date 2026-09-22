@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { clampDescription, tenantTitleTemplate } from '@journeyoflife-org/seo';
 import tenant from '@/fixtures/tenant.json';
 import { DEFAULT_LOCALE, resolveLocale } from '@/lib/resolve-locale';
+// Platform design tokens (single source of truth for --jol-* custom properties).
+// Must precede globals.css so spoke styles can reference them.
+import '@journeyoflife-org/ui/styles/tokens.css';
 import './globals.css';
 
 /**
@@ -47,7 +50,7 @@ export default function RootLayout({
             previously hardcoded English on a Lithuanian document. */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:bg-white focus:p-2"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:bg-surface focus:p-2"
         >
           Pereiti prie pagrindinio turinio
         </a>

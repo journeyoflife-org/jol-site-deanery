@@ -115,10 +115,10 @@ export default function DeaneryPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={toJsonLd(breadcrumb)} />
 
       {hero ? (
-        <section className="bg-primary/10 py-16 px-4">
+        <section className="bg-primary-50 py-16 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl font-bold mb-4">{t(hero.heading)}</h1>
-            <p className="text-lg text-gray-600">{t(hero.body)}</p>
+            <p className="text-lg text-content-muted">{t(hero.body)}</p>
           </div>
         </section>
       ) : null}
@@ -131,9 +131,9 @@ export default function DeaneryPage() {
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {stats.items.map((item) => (
-                <div key={item.label.lt} className="text-center p-4 bg-gray-50 rounded-lg">
+                <div key={item.label.lt} className="text-center p-4 bg-surface-muted rounded-lg">
                   <div className="text-3xl font-bold text-primary">{item.value}</div>
-                  <div className="text-sm text-gray-600 mt-1">{t(item.label)}</div>
+                  <div className="text-sm text-content-muted mt-1">{t(item.label)}</div>
                 </div>
               ))}
             </div>
@@ -142,14 +142,14 @@ export default function DeaneryPage() {
       ) : null}
 
       {cta ? (
-        <section className="py-12 px-4 bg-gray-50">
+        <section className="py-12 px-4 bg-surface-muted">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-wrap gap-4 justify-center">
               {cta.links.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="px-6 py-3 bg-primary/20 rounded-lg hover:bg-primary/30 transition-colors font-medium"
+                  className="px-6 py-3 bg-primary-100 text-primary-900 rounded-lg hover:bg-primary-200 transition-colors font-medium"
                 >
                   {t(link.label)}
                 </a>
