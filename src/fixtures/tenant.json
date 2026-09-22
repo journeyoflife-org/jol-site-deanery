@@ -243,44 +243,10 @@
             "ru": "Shared Deanery Events Calendar [TODO: verify with parish/diocese — do not publish unverified]"
           },
           "body": {
-            "lt": "Visų dekanato parapijų bendri renginiai: procesijos, atlaidai, jaunimo susitikimai ir caritas akcijos. Bilietai į mokamus renginius - krautuvėlėje.",
-            "en": "Joint events of all deanery parishes: processions, patronal feasts, youth meetings and Caritas initiatives. Tickets for paid events are available in the shop.",
-            "ru": "Joint events of all deanery parishes: processions, patronal feasts, youth meetings and Caritas initiatives. Tickets for paid events are available in the shop. [TODO: verify with parish/diocese — do not publish unverified]"
+            "lt": "Visų dekanato parapijų bendri renginiai: procesijos, atlaidai, jaunimo susitikimai ir caritas akcijos.",
+            "en": "Joint events of all deanery parishes: processions, patronal feasts, youth meetings and Caritas initiatives.",
+            "ru": "Joint events of all deanery parishes: processions, patronal feasts, youth meetings and Caritas initiatives. [TODO: verify with parish/diocese — do not publish unverified]"
           }
-        }
-      ]
-    },
-    {
-      "route": "/shop",
-      "title": {
-        "lt": "Krautuvėlė",
-        "en": "Shop",
-        "ru": "Shop [TODO: verify with parish/diocese — do not publish unverified]"
-      },
-      "contentBlocks": [
-        {
-          "type": "list",
-          "heading": {
-            "lt": "Dekanato krautuvėlė",
-            "en": "Deanery Shop",
-            "ru": "Deanery Shop [TODO: verify with parish/diocese — do not publish unverified]"
-          },
-          "items": [
-            {
-              "title": {
-                "lt": "Dekanato suvenyrai",
-                "en": "Deanery Merchandise",
-                "ru": "Deanery Merchandise [TODO: verify with parish/diocese — do not publish unverified]"
-              }
-            },
-            {
-              "title": {
-                "lt": "Renginių bilietai",
-                "en": "Event Tickets",
-                "ru": "Event Tickets [TODO: verify with parish/diocese — do not publish unverified]"
-              }
-            }
-          ]
         }
       ]
     }

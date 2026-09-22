@@ -14,9 +14,6 @@ importers:
       '@journeyoflife-org/auth':
         specifier: ^1.0.0
         version: 1.0.0(next@14.2.0(@playwright/test@1.63.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@journeyoflife-org/commerce':
-        specifier: ^1.0.0
-        version: 1.0.0
       '@journeyoflife-org/i18n':
         specifier: ^1.0.0
         version: 1.0.0(next@14.2.0(@playwright/test@1.63.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -358,9 +355,6 @@ packages:
     peerDependencies:
       next: ^14.0.0
       react: ^18.2.0
-
-  '@journeyoflife-org/commerce@1.0.0':
-    resolution: {integrity: sha512-idaLZKOOqRMuqB33kXmjDhjbJdXTnyf8mDSVgFHWJd25NYPFeCZn3dwc+FeI7z4Uno9j6Oz7c/J81YM3ocEuCw==, tarball: https://npm.pkg.github.com/download/@journeyoflife-org/commerce/1.0.0/8c6cff316395cb7ea0350e07ab0f90ebd75ced9e}
 
   '@journeyoflife-org/i18n@1.0.0':
     resolution: {integrity: sha512-1ho1HqAxFc+rC6h7GELeBOLHq6gVVqfFANFzr4zr+kG2k3T/QYiqC4eLbf/2GaeBUFyi1MemTto0oU7oOi8eTA==, tarball: https://npm.pkg.github.com/download/@journeyoflife-org/i18n/1.0.0/24225f17fa4d90880d1b9a3f98666587ecd86050}
@@ -3538,8 +3532,6 @@ snapshots:
       - nodemailer
       - react-dom
 
-  '@journeyoflife-org/commerce@1.0.0': {}
-
   '@journeyoflife-org/i18n@1.0.0(next@14.2.0(@playwright/test@1.63.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       deepl-node: 1.28.0
@@ -4971,7 +4963,7 @@ snapshots:
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.10
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(eslint@8.57.1))(eslint@8.57.1)
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.5(eslint@8.57.1)
       eslint-plugin-react-hooks: 5.0.0-canary-7118f5dd7-20230705(eslint@8.57.1)
@@ -5001,7 +4993,7 @@ snapshots:
       tinyglobby: 0.2.17
       unrs-resolver: 1.12.2
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -5016,7 +5008,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@8.57.1):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@7.2.0(eslint@8.57.1)(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.2.0

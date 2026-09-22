@@ -28,7 +28,6 @@
   "dependencies": {
     "@journeyoflife-org/a11y": "^1.0.0",
     "@journeyoflife-org/auth": "^1.0.0",
-    "@journeyoflife-org/commerce": "^1.0.0",
     "@journeyoflife-org/i18n": "^1.0.0",
     "@journeyoflife-org/observability": "^1.0.0",
     "@journeyoflife-org/perf": "^1.0.0",
