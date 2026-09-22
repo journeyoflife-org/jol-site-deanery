@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Standalone output for Docker multi-stage build (produces a minimal
+  // server.js + .next/ that can run without node_modules).
+  output: 'standalone',
   // Remove X-Powered-By: Next.js (information disclosure — tells attackers
   // the framework and version, narrowing their exploit search).
   poweredByHeader: false,
