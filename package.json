@@ -22,7 +22,7 @@
     "check-secrets": "bash scripts/check-secrets.sh",
     "check-payment-boundary": "bash scripts/check-payment-boundary.sh",
     "check-theme-literals": "bash scripts/check-theme-literals.sh",
-    "verify": "pnpm type-check && pnpm test && pnpm check-payment-boundary && pnpm check-theme-literals && pnpm check-secrets",
+    "verify": "pnpm type-check && pnpm test && pnpm check-payment-boundary && pnpm check-theme-literals && pnpm check-secrets && pnpm check-a11y && pnpm check-perf",
     "clean": "rm -rf .next .turbo node_modules"
   },
   "dependencies": {
