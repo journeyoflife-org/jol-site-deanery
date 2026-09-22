@@ -26,21 +26,28 @@ PATTERNS=(
   "country === 'ee'"
   'country === "ee"'
   # Hardcoded accent/theme colors (must use design tokens)
-  '#[0-9a-fA-F]\{6\}'
+  '#[0-9a-fA-F]{6}'
 )
 
-# Only check component and page source files
+# Only check component, page and library source files.
+# src/lib is included deliberately: the Basilica-derived src/lib/json-ld.ts this
+# repo previously shipped hardcoded 'CatholicChurch'/'PlaceOfWorship' literals,
+# which the old src/components+src/app scope could never have caught.
+# A missing directory is not fatal — grep's stderr is discarded below.
 FOUND=0
 
 for pattern in "${PATTERNS[@]}"; do
-  MATCHES=$(grep -rn --include='*.{ts,tsx}' \
+  # NOTE: grep --include uses fnmatch, which does NOT support brace expansion.
+  # '--include=*.{ts,tsx}' silently matched zero files, so this gate always
+  # passed regardless of content. One --include per extension.
+  MATCHES=$(grep -rn --include='*.ts' --include='*.tsx' \
     --exclude-dir=node_modules \
     --exclude-dir=.next \
     --exclude-dir=dist \
     --exclude-dir=fixtures \
     --exclude-dir=data \
     -i -E "$pattern" \
-    src/components/ src/app/ 2>/dev/null || true)
+    src/app/ src/components/ src/lib/ 2>/dev/null || true)
 
   if [ -n "$MATCHES" ]; then
     echo "WARN: Possible theme/vertical literal in component code (INV-7):"
