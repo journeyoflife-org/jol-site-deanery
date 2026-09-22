@@ -19,7 +19,7 @@
     "test:e2e": "playwright test",
     "check-a11y": "tsx scripts/check-a11y-pages.ts",
     "check-perf": "tsx scripts/check-perf-budget.ts",
-    "check-secrets": "tsx scripts/check-secrets.ts",
+    "check-secrets": "bash scripts/check-secrets.sh",
     "check-payment-boundary": "bash scripts/check-payment-boundary.sh",
     "check-theme-literals": "bash scripts/check-theme-literals.sh",
     "verify": "pnpm type-check && pnpm test && pnpm check-payment-boundary && pnpm check-theme-literals && pnpm check-secrets",
