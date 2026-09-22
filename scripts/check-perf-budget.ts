@@ -72,8 +72,10 @@ if (existsSync(appChunksDir)) {
   const pageChunks = readdirSync(appChunksDir, { encoding: 'utf8', recursive: true })
     .filter((p) => p.endsWith('.js'));
 
+  let totalAppJS = 0;
   for (const relChunk of pageChunks) {
     const size = statSync(join(appChunksDir, relChunk)).size;
+    totalAppJS += size;
     if (size > BUDGETS.maxPageJSBytes) {
       violations.push({
         file: `static/chunks/app/${relChunk}`,
@@ -82,6 +84,18 @@ if (existsSync(appChunksDir)) {
         rule: 'PERF-CHUNK',
       });
     }
+  }
+
+  // Check total app-controlled JS against the overall budget.
+  // This catches cases where many small chunks accumulate to exceed the budget
+  // even if no single chunk violates the per-page limit.
+  if (totalAppJS > BUDGETS.maxJSBytes) {
+    violations.push({
+      file: 'static/chunks/app/ (total)',
+      size: totalAppJS,
+      budget: BUDGETS.maxJSBytes,
+      rule: 'PERF-JS-TOTAL',
+    });
   }
 }
 
