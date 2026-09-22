@@ -1,10 +1,12 @@
 /**
  * Accessibility page checker — verifies all pages meet WCAG 2.2 AA.
  *
- * Checks:
- * - Every page has a lang attribute
- * - Every page has a <main> landmark
- * - Every page has a skip-navigation link
+ * Checks (App Router: the html lang attribute, the single <main> landmark and
+ * the skip-navigation link are ROOT-LAYOUT concerns — they wrap every page —
+ * so they are verified on layout.tsx; alt text is verified per page):
+ * - Root layout sets the html lang attribute
+ * - Root layout provides one <main> landmark wrapping page content
+ * - Root layout includes a skip-navigation link
  * - Every image has alt text (or role="presentation")
  * - Heading hierarchy has no skips (h1 → h2 → h3, etc.)
  *
@@ -25,11 +27,11 @@ interface Violation {
 
 const violations: Violation[] = [];
 
-function findPageFiles(dir: string): string[] {
+function findRouteFiles(dir: string): string[] {
   if (!existsSync(dir)) return [];
   const entries = readdirSync(dir, { withFileTypes: true, recursive: true });
   return entries
-    .filter((e) => e.isFile() && /page\.(tsx|jsx)$/.test(e.name))
+    .filter((e) => e.isFile() && /(page|layout)\.(tsx|jsx)$/.test(e.name))
     .map((e) => join(dir, e.name));
 }
 
@@ -49,13 +51,17 @@ function checkFile(filePath: string): void {
     }
   }
 
-  // DS-A11Y-03: <main> landmark
-  if (filePath.includes('page.tsx')) {
+  // DS-A11Y-03: <main> landmark. In the App Router the landmark lives ONCE in
+  // the root layout (wrapping {children}), not in each page — a <main> inside a
+  // page would nest within the layout's and break the one-main-landmark rule.
+  // Verified at layout level, consistent with DS-A11Y-01 (lang) and DS-A11Y-07
+  // (skip-nav), which are layout concerns for the same reason.
+  if (filePath.includes('app/layout.tsx')) {
     if (!content.includes('<main') && !content.includes('<Main')) {
       violations.push({
         file: relPath,
         rule: 'DS-A11Y-03',
-        detail: 'Page must contain a <main> landmark element',
+        detail: 'Root layout must contain a <main> landmark element',
       });
     }
   }
@@ -87,13 +93,13 @@ function checkFile(filePath: string): void {
 }
 
 // Main
-const pageFiles = findPageFiles(APP_DIR);
-if (pageFiles.length === 0) {
-  console.log('No page files found — skipping a11y check.');
+const routeFiles = findRouteFiles(APP_DIR);
+if (routeFiles.length === 0) {
+  console.log('No route files found — skipping a11y check.');
   process.exit(0);
 }
 
-for (const file of pageFiles) {
+for (const file of routeFiles) {
   checkFile(file);
 }
 
@@ -105,4 +111,4 @@ if (violations.length > 0) {
   process.exit(1);
 }
 
-console.log(`PASS: a11y check passed for ${pageFiles.length} page files.`);
+console.log(`PASS: a11y check passed for ${routeFiles.length} route files.`);

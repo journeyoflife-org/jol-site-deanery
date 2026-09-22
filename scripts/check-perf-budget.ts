@@ -56,22 +56,28 @@ if (!existsSync(BUILD_DIR)) {
   process.exit(0);
 }
 
-// Check static JS chunks
-const staticDir = join(BUILD_DIR, 'static', 'chunks');
-if (existsSync(staticDir)) {
-  const jsFiles = readdirSync(staticDir)
-    .filter((f) => f.endsWith('.js'))
-    .map((f) => ({
-      name: f,
-      size: statSync(join(staticDir, f)).size,
-    }));
+// Check per-page JS chunks.
+//
+// Scope: the App Router page/layout chunks under static/chunks/app/ — the JS
+// this spoke's own code controls. The framework/vendor/polyfill chunks that sit
+// directly in static/chunks/ (framework-*, main-*, polyfills-*, React, shared)
+// are a fixed platform cost: identical across every Next.js spoke and not
+// reducible by application code, so applying a PER-PAGE budget to them only
+// produced false failures (React's framework chunk alone is ~137KB while the
+// deanery page chunk is ~160B). maxPageJSBytes is a per-page budget, so it is
+// enforced against page chunks.
+const appChunksDir = join(BUILD_DIR, 'static', 'chunks', 'app');
+if (existsSync(appChunksDir)) {
+  // recursive readdir (Node >=18.17) yields paths relative to appChunksDir.
+  const pageChunks = readdirSync(appChunksDir, { encoding: 'utf8', recursive: true })
+    .filter((p) => p.endsWith('.js'));
 
-  // Flag any individual chunk over budget
-  for (const file of jsFiles) {
-    if (file.size > BUDGETS.maxPageJSBytes) {
+  for (const relChunk of pageChunks) {
+    const size = statSync(join(appChunksDir, relChunk)).size;
+    if (size > BUDGETS.maxPageJSBytes) {
       violations.push({
-        file: `static/chunks/${file.name}`,
-        size: file.size,
+        file: `static/chunks/app/${relChunk}`,
+        size,
         budget: BUDGETS.maxPageJSBytes,
         rule: 'PERF-CHUNK',
       });
